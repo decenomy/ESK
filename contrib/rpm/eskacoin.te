@@ -1,0 +1,81 @@
+policy_module(eskacoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type eskacoin_t;
+type eskacoin_exec_t;
+init_daemon_domain(eskacoin_t, eskacoin_exec_t)
+
+permissive eskacoin_t;
+
+type eskacoin_initrc_exec_t;
+init_script_file(eskacoin_initrc_exec_t)
+
+type eskacoin_conf_t;
+files_type(eskacoin_conf_t)
+
+type eskacoin_var_lib_t;
+files_type(eskacoin_var_lib_t)
+
+type eskacoin_var_run_t;
+files_type(eskacoin_var_run_t)
+
+type eskacoin_port_t;
+corenet_port(eskacoin_port_t)
+
+########################################
+#
+# eskacoin local policy
+#
+allow eskacoin_t self:process { fork };
+
+allow eskacoin_t self:fifo_file rw_fifo_file_perms;
+allow eskacoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(eskacoin_t, eskacoin_conf_t, eskacoin_conf_t)
+manage_files_pattern(eskacoin_t, eskacoin_conf_t, eskacoin_conf_t)
+
+manage_dirs_pattern(eskacoin_t, eskacoin_var_lib_t, eskacoin_var_lib_t)
+manage_files_pattern(eskacoin_t, eskacoin_var_lib_t, eskacoin_var_lib_t)
+files_var_lib_filetrans(eskacoin_t, eskacoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(eskacoin_t, eskacoin_var_run_t, eskacoin_var_run_t)
+manage_files_pattern(eskacoin_t, eskacoin_var_run_t, eskacoin_var_run_t)
+
+sysnet_dns_name_resolve(eskacoin_t)
+corenet_all_recvfrom_unlabeled(eskacoin_t)
+
+allow eskacoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(eskacoin_t)
+corenet_tcp_sendrecv_generic_node(eskacoin_t)
+corenet_tcp_sendrecv_all_ports(eskacoin_t)
+corenet_tcp_bind_generic_node(eskacoin_t)
+
+gen_require(`
+    type eskacoin_port_t;
+')
+allow eskacoin_t eskacoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type eskacoin_port_t;
+')
+allow eskacoin_t eskacoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(eskacoin_t)
+
+files_read_etc_files(eskacoin_t)
+
+miscfiles_read_localization(eskacoin_t)
+
+sysnet_dns_name_resolve(eskacoin_t)
+
+allow eskacoin_t eskacoin_exec_t:file execute_no_trans;
+allow eskacoin_t self:process setsched;
+corecmd_exec_ls(eskacoin_t)
+corenet_tcp_connect_http_port(eskacoin_t)
+dev_read_urand(eskacoin_t)
+fs_getattr_xattr_fs(eskacoin_t)
+kernel_read_system_state(eskacoin_t)

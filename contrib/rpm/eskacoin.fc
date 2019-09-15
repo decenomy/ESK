@@ -1,0 +1,8 @@
+/usr/bin/eskacoin-cli		--	gen_context(system_u:object_r:eskacoin_exec_t,s0)
+/usr/sbin/eskacoind		--	gen_context(system_u:object_r:eskacoin_exec_t,s0)
+/usr/lib(64)?/eskacoin/eskacoind		--	gen_context(system_u:object_r:eskacoin_exec_t,s0)
+
+/etc/eskacoin(/.*)?		gen_context(system_u:object_r:eskacoin_conf_t,s0)
+/var/lib/eskacoin(/.*)?		gen_context(system_u:object_r:eskacoin_var_lib_t,s0)
+
+(/var)?/run/eskacoind(/.*)?   gen_context(system_u:object_r:eskacoin_var_run_t,s0)

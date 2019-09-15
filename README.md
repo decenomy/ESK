@@ -1,1 +1,4 @@
-# Eskacoin-Project
+EskaCoin Project
+
+Official site: https://eskacoin.com
+

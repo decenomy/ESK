@@ -1,0 +1,157 @@
+
+## <summary>policy for eskacoin</summary>
+
+
+########################################
+## <summary>
+##	Transition to eskacoin.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`eskacoin_domtrans',`
+	gen_require(`
+		type eskacoin_t, eskacoin_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, eskacoin_exec_t, eskacoin_t)
+')
+
+
+########################################
+## <summary>
+##	Execute eskacoin server in the eskacoin domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`eskacoin_initrc_domtrans',`
+	gen_require(`
+		type eskacoin_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, eskacoin_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search eskacoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`eskacoin_search_lib',`
+	gen_require(`
+		type eskacoin_var_lib_t;
+	')
+
+	allow $1 eskacoin_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read eskacoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`eskacoin_read_lib_files',`
+	gen_require(`
+		type eskacoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, eskacoin_var_lib_t, eskacoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage eskacoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`eskacoin_manage_lib_files',`
+	gen_require(`
+		type eskacoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, eskacoin_var_lib_t, eskacoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage eskacoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`eskacoin_manage_lib_dirs',`
+	gen_require(`
+		type eskacoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, eskacoin_var_lib_t, eskacoin_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a eskacoin environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`eskacoin_admin',`
+	gen_require(`
+		type eskacoin_t;
+		type eskacoin_initrc_exec_t;
+		type eskacoin_var_lib_t;
+	')
+
+	allow $1 eskacoin_t:process { ptrace signal_perms };
+	ps_process_pattern($1, eskacoin_t)
+
+	eskacoin_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 eskacoin_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, eskacoin_var_lib_t)
+
+')
+

@@ -1,0 +1,6 @@
+usr/local/bin/eskacoin-qt usr/bin
+share/pixmaps/eskacoin32.xpm usr/share/pixmaps
+share/pixmaps/eskacoin16.xpm usr/share/pixmaps
+share/pixmaps/eskacoin128.png usr/share/pixmaps
+debian/eskacoin-qt.desktop usr/share/applications
+debian/eskacoin-qt.protocol usr/share/kde4/services/

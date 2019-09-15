@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=ESKACOIN Core
+Comment=ESKACOIN P2P Cryptocurrency
+Comment[fr]=ESKACOIN, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=ESKACOIN, eşten eşe kriptografik sanal para birimi
+Exec=eskacoin-qt %u
+Terminal=false
+Type=Application
+Icon=eskacoin128
+MimeType=x-scheme-handler/eskacoin;
+Categories=Office;Finance;
+StartupWMClass=EskaCoin-qt
