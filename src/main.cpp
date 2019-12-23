@@ -2034,22 +2034,30 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = 5 * COIN;
     } else if (nHeight <= 129000 && nHeight > 112000) {
         nSubsidy = 7.5 * COIN;
-    } else if (nHeight <= 146000 && nHeight > 129000) {
+    } else if (nHeight <= 140000 && nHeight > 129000) {
         nSubsidy = 10 * COIN;
-    } else if (nHeight <= 170000 && nHeight > 146000) {
-        nSubsidy = 15 * COIN;
-    } else if (nHeight <= 200000 && nHeight > 170000) {
+    } else if (nHeight <= 160000 && nHeight > 140000) {
+        nSubsidy = 12.5 * COIN;
+    } else if (nHeight <= 180000 && nHeight > 160000) {
+        nSubsidy = 14 * COIN;
+    } else if (nHeight <= 200000 && nHeight > 180000) {
+        nSubsidy = 17 * COIN;
+    } else if (nHeight <= 225000 && nHeight > 200000) {
         nSubsidy = 20 * COIN;
-    } else if (nHeight <= 250000 && nHeight > 200000) {
-        nSubsidy = 25 * COIN;
+    } else if (nHeight <= 250000 && nHeight > 225000) {
+        nSubsidy = 23 * COIN;
     } else if (nHeight <= 300000 && nHeight > 250000) {
+        nSubsidy = 25 * COIN;
+    } else if (nHeight <= 350000 && nHeight > 300000) {
         nSubsidy = 30 * COIN;
-    } else if (nHeight <= 375000 && nHeight > 300000) {
+    } else if (nHeight <= 450000 && nHeight > 350000) {
+        nSubsidy = 35 * COIN;
+    } else if (nHeight <= 550000 && nHeight > 450000) {
         nSubsidy = 40 * COIN;
-    } else if (nHeight <= 2000000 && nHeight > 375000) {
+    } else if (nHeight <= 2000000 && nHeight > 550000) {
         nSubsidy = 50 * COIN;
     } else {
-        nSubsidy = 25 * COIN;
+        nSubsidy = 50 * COIN;
     }
     return nSubsidy;
 }
@@ -6822,12 +6830,12 @@ bool static ProcessMessage(CNode* pfrom, std::string strCommand, CDataStream& vR
 int ActiveProtocol()
 {
     // SPORK_14 is used for 70917 (v1.0+)
-    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT))
-            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+    //if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT))
+    //        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 
     // SPORK_15 was used for 70916 (v0.9+), commented out now.
-    //if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
-    //        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+    if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
+            return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
 }

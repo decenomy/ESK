@@ -82,34 +82,34 @@ inline int64_t GetMasterNodeCollateral(int nHeight){
         return 1000;
     } else if (nHeight <= 129000 && nHeight > 112000) {
         return 1250;
-    } else if (nHeight <= 146000 && nHeight > 129000) {
+    } else if (nHeight <= 140000 && nHeight > 129000) {
         return 1500;
-    } else if (nHeight <= 170000 && nHeight > 146000) {
-        return 2000;
-    } else if (nHeight <= 200000 && nHeight > 170000) {
-        return 2500;
-    } else if (nHeight <= 250000 && nHeight > 200000) {
+    } else if (nHeight <= 160000 && nHeight > 140000) {
         return 3500;
-    } else if (nHeight <= 300000 && nHeight > 250000) {
-        return 4250;
-    } else if (nHeight <= 375000 && nHeight > 300000) {
-        return 5500;
-    } else if (nHeight <= 450000 && nHeight > 375000) {
-        return 6500;
-    } else if (nHeight <= 550000 && nHeight > 450000) {
+    } else if (nHeight <= 180000 && nHeight > 160000) {
+        return 4000;
+    } else if (nHeight <= 200000 && nHeight > 180000) {
+        return 5000;
+    } else if (nHeight <= 225000 && nHeight > 200000) {
+        return 6000;
+    } else if (nHeight <= 250000 && nHeight > 225000) {
         return 7000;
-    } else if (nHeight <= 650000 && nHeight > 550000) {
-        return 7500;
-    } else if (nHeight <= 800000 && nHeight > 650000) {
+    } else if (nHeight <= 300000 && nHeight > 250000) {
         return 8000;
-    } else if (nHeight <= 1000000 && nHeight > 800000) {
-        return 8500;
-    } else if (nHeight <= 1500000 && nHeight > 1000000) {
-        return 9000;
-    } else if (nHeight <= 2000000 && nHeight > 1500000) {
+    } else if (nHeight <= 350000 && nHeight > 300000) {
         return 10000;
+    } else if (nHeight <= 450000 && nHeight > 350000) {
+        return 12500;
+    } else if (nHeight <= 550000 && nHeight > 450000) {
+        return 15000;
+    } else if (nHeight <= 700000 && nHeight > 550000) {
+        return 20000;
+    } else if (nHeight <= 1000000 && nHeight > 700000) {
+        return 25000;
+    } else if (nHeight <= 2000000 && nHeight > 1000000) {
+        return 50000;
     }
-    return 10000;
+    return 50000;
 }
 /** Default for -blockmaxsize and -blockminsize, which control the range of sizes the mining code will create **/
 static const unsigned int DEFAULT_BLOCK_MAX_SIZE = 750000;
