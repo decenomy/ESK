@@ -203,6 +203,15 @@ public:
         vSeeds.push_back(CDNSSeedData("node04.eskacoin.com", "node04.eskacoin.com"));
         vSeeds.push_back(CDNSSeedData("node05.eskacoin.com", "node05.eskacoin.com"));
 
+        vSeeds.push_back(CDNSSeedData("seed1.eskacoin.com", "seed1.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed2.eskacoin.com", "seed2.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed3.eskacoin.com", "seed3.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed4.eskacoin.com", "seed4.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed5.eskacoin.com", "seed5.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed6.eskacoin.com", "seed6.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed7.eskacoin.com", "seed7.eskacoin.com"));
+        vSeeds.push_back(CDNSSeedData("seed8.eskacoin.com", "seed8.eskacoin.com"));
+
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 145);
