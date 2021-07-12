@@ -1,3 +1,0 @@
-usr/local/bin/eskacoind usr/bin
-usr/local/bin/eskacoin-cli usr/bin
-debian/examples/eskacoin.conf etc/eskacoin
