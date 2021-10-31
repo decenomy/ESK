@@ -1,4 +1,4 @@
-Eskacoin wallet repository
+Eskacoin wallet repository 
 =====================================
 
 ### Coin Specs
