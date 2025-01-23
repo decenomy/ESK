@@ -376,8 +376,6 @@ static const CRPCCommand vRPCCommands[] =
         {"eskacoin", "listmasternodeconf", &listmasternodeconf, true },
         {"eskacoin", "getactivemasternodecount", &getactivemasternodecount, true },
         {"eskacoin", "getmasternodestatus", &getmasternodestatus, true },
-        {"eskacoin", "getmasternodewinners", &getmasternodewinners, true },
-        {"eskacoin", "getmasternodescores", &getmasternodescores, true },
         {"eskacoin", "mnsync", &mnsync, true },
         {"eskacoin", "spork", &spork, true },
         {"eskacoin", "mnping", &mnping, true },
